@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:bmi_hw/second_page.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Homepage(),
+      home:Homepage()
+      // initialRoute: '/',
+      // routes:{
+      //   '/':(context)=>Homepage(),
+      //   '/second':(context)=>SecondPage(),
+      // },
 
     );
   }
@@ -26,7 +33,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  double _currentValue=0;
+  double _currentValue=30;
   double inc=50;
   double bmi=0;
   @override
@@ -155,15 +162,39 @@ class _HomepageState extends State<Homepage> {
                     foregroundColor: Colors.white,
 
                     onPressed: (){
+
                       setState(() {
 
                       });
                       bmi=(inc*10000)/(_currentValue*_currentValue);
+                      Navigator.push(context,MaterialPageRoute  (builder: (context)=> SecondPage(bmi:bmi)));
+
+                     // Navigator.pushName(context,'/second');
                     }
                 ),
               ],
             ),
           ),
+
+
+          RatingBar.builder(
+            initialRating: 3,
+            minRating: 1,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            itemCount: 5,
+            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+            itemBuilder: (context, _) => Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+            onRatingUpdate: (rating) {
+              print(rating);
+            },
+          )
+
+
+
         ],
 
       ),
