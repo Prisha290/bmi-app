@@ -169,7 +169,7 @@ class _HomepageState extends State<Homepage> {
                       bmi=(inc*10000)/(_currentValue*_currentValue);
                       Navigator.push(context,MaterialPageRoute  (builder: (context)=> SecondPage(bmi:bmi)));
 
-                     // Navigator.pushName(context,'/second');
+                     // Navigator.pushNamed(context,'/second',arguments:Arguments(bmi));
                     }
                 ),
               ],
@@ -177,21 +177,6 @@ class _HomepageState extends State<Homepage> {
           ),
 
 
-          RatingBar.builder(
-            initialRating: 3,
-            minRating: 1,
-            direction: Axis.horizontal,
-            allowHalfRating: true,
-            itemCount: 5,
-            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-            itemBuilder: (context, _) => Icon(
-              Icons.star,
-              color: Colors.amber,
-            ),
-            onRatingUpdate: (rating) {
-              print(rating);
-            },
-          )
 
 
 

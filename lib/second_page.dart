@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// class Argument(
+// final double bmi;
+// Argument(this.bmi);
+// )
 
 class SecondPage extends StatefulWidget {
   SecondPage({required this.bmi});
@@ -10,19 +14,37 @@ class SecondPage extends StatefulWidget {
 }
 
 class _SecondPageState extends State<SecondPage> {
+  String content="";
   @override
   Widget build(BuildContext context) {
+    if (widget.bmi < 18.5){
+      content="You are in the Underweight";
+    }
+    else
+      if(widget.bmi > 25 ){content="You are in the Overweight range.";}
 
+    else{
+    content= "You are Healthy !!";
+    }
+
+
+    //final args = ModalRoute.of(context)!.settings.arguments as Arguments;
     return Scaffold(
       appBar: AppBar(
         title:Text("Result"),
       ),
       body:
         /////////
+      Center(
+      child:
+      Container(
+          height: 300,
+          width: 700,
+          color: Colors.greenAccent,
+          child:
         Center(child:Column(
+
         children:[
-          // Center(child: Text("Recalculated BMI :",style: TextStyle(fontSize: 40,color:Colors.white),)),
-         //  Text("Your BMI is ${widget.bmi.round()}",style: TextStyle(fontSize: 50,color:Colors.black),),
           FloatingActionButton(
               child: Center(child: Icon(Icons.accessibility_rounded)),
               backgroundColor: Colors.deepPurpleAccent,
@@ -38,18 +60,11 @@ class _SecondPageState extends State<SecondPage> {
               }
           ),
          Text("Your BMI is ${widget.bmi.round()}",style: TextStyle(fontSize: 50,color:Colors.black),)
-,
-  //   /////////
-  //   Column(
-  //   children: [
-  //   if(${widget.bmi} <18.5 )...[
-  //   Text("You are underweight."),
-  //   ]else if($(widget.bmi} > 25 )[Text("Overweight range."),]
-  // else...[
-  // Text("You are healthy.")
-  // ]
-  // ])
-  //    ///////////////////
+,         Text("${content}",style: TextStyle(fontSize: 35,color:Colors.black),),
+    /////////
+
+
+     ///////////////////
 
           RatingBar.builder(
             initialRating: 3,
@@ -69,10 +84,22 @@ class _SecondPageState extends State<SecondPage> {
         ]
       )
         )
-
+      )
+      )
 
     );
   }
+
 }
 
+// //////////
+// class ScreenArguments {
+//   final String title;
+//   final String message;
+//
+//   ScreenArguments(this.title, this.message);
+// }
+// before returning Scaffold.
+// final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+// register widget in routes.
 
